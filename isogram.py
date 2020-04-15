@@ -5,29 +5,46 @@
 # multiple times.
 # Examples of isograms(inputs):
 #1, Good inputs
-    # lumberjacks
-    # background
-    # downstream
-    # six-year-old
+    # 'lumberjacks'
+    # 'background'
+    # 'downstream'
+    # 'six-year-old'
 
-#make a histogram
-#if key is letter and value is > 1: return False
+#2, Bad inputs
+    # 3425
+    #2.55
+
+#3, Edge case input
+    # '' - empty string
+    #
+
 def isIsogram(word):
+    #make a histogram
+    #if key is letter and value is > 1: return False
+    word = word.strip() #to remove all whitespaces
+    
+    if len(word) == 0:
+        return 'Please enter a valid word'
+
     hist = dict()
     #create a histogram
-    for i in word:
-        if i in hist:
-            hist[i] += 1
-        else:
-            hist[i] = 1
-    print(hist)
-    #loop through the histogram keys and values
-    #check if it's a letter and if value == 1
-    for key, value in hist.items():
-        if key.isalpha() and value > 1:
-            return False
-    return True
+    try:
+        for i in word:
+            if i in hist:
+                hist[i] += 1
+            else:
+                hist[i] = 1
+        print(hist)
+        #loop through the histogram keys and values
+        #check if it's a letter and if value == 1
+        for key, value in hist.items():
+            if key.isalpha() and value > 1:
+                return False
+        return True
+
+    except TypeError:
+        return 'Sorry only strings allowed'
 
 
 
-print(isIsogram('lumbe-rjac-ks'))
+print(isIsogram('    '))
